@@ -49,21 +49,22 @@ wrapper.onclick = function(event) {
     let innerText1 = target.innerText
     allSumbols = innerText1
     arrAllSumbols.push(allSumbols)
+   
 
     
     windowNumbers.innerText = arrAllSumbols.join('').split((/(\+|\-|\*|\/)/)).join('').replace(/^0+/, '')
     
-    if(windowNumbers.innerText === '') {
-        windowNumbers.innerText = 0
-    }
+    // if(windowNumbers.innerText === '') {
+    //     windowNumbers.innerText = 0
+    // }
   
-    
+   
 }
 
 //Удаление
 
 const delC = document.getElementById('del_c');
-delC.onclick = function(event) {
+delC.onclick = function() {
     let dellette = []
     windowNumbers.innerText = 0
     arrAllSumbols = dellette
@@ -95,6 +96,7 @@ calculated.onclick = function(a, c, b) {
     if(c === undefined) {
         return
     }
+      
     if(d.length > 3) {
         a = d[1] + d[2]
         c = d[3]
@@ -111,6 +113,7 @@ calculated.onclick = function(a, c, b) {
         if(c === '/') {
             result = Number(a) / Number(b)
         }
+    
     }
    
     
@@ -119,8 +122,12 @@ calculated.onclick = function(a, c, b) {
     arrAllSumbols = [Number(result)]
 
     
+    
+   
 
-    console.log(a)
+    
+
+    console.log(d)
     
 }
 
