@@ -23,7 +23,6 @@ const wrapper = document.getElementById('wrapper');
 
 
 
-
 wrapper.onclick = function(event) {
     let target = event.target
     if(target != zero 
