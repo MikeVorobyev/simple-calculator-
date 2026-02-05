@@ -1,172 +1,68 @@
+let currentInput = '0'
+let isResultShown = false
 
-let allSumbols = []
-let arrAllSumbols = []
+const display = document.getElementById('window_numbers')
 
-
-
-
-//Окошко
-
-const windowNumbers = document.getElementById('window_numbers');
-
-
-
-
-
-//Точка(запятая)
-const point = document.getElementById('point');
-
-
-//Обертка(все приложение)
-const wrapper = document.getElementById('wrapper');
-
-
-
-
-wrapper.onclick = function(event) {
-    let target = event.target
-    if(target != zero 
-    && target != one
-    && target != two
-    && target != three
-    && target != four
-    && target != five
-    && target != six
-    && target != seven
-    && target != eight
-    && target != nine
-    && target != delC.onclick
-    && target != calculated.onclick
-    && target != point
-    && target != division
-    && target != multiplication
-    && target != subtraction
-    && target != addition) {
-        return 
+// Цифры
+const digits = ['zero','one','two','three','four','five','six','seven','eight','nine']
+digits.forEach(id => {
+    document.getElementById(id).onclick = () => {
+        if (currentInput === '0' || isResultShown) {
+            currentInput = document.getElementById(id).innerText
+            isResultShown = false
+        } else {
+            currentInput += document.getElementById(id).innerText
+        }
+        display.innerText = currentInput
     }
-    
-    let innerText1 = target.innerText
-    allSumbols = innerText1
-    arrAllSumbols.push(allSumbols)
-   
+})
 
-    
-    windowNumbers.innerText = arrAllSumbols.join('').split((/(\+|\-|\*|\/)/)).join('').replace(/^0+/, '')
-    
-    // if(windowNumbers.innerText === '') {
-    //     windowNumbers.innerText = 0
-    // }
-  
-   
+// Операторы
+const operators = ['addition','subtraction','multiplication','division']
+operators.forEach(id => {
+    document.getElementById(id).onclick = () => {
+        if (/[+\-*/]$/.test(currentInput)) {
+            currentInput = currentInput.slice(0, -1)
+        }
+        currentInput += document.getElementById(id).innerText
+        display.innerText = currentInput
+        isResultShown = false
+    }
+})
+
+// Точка
+document.getElementById('point').onclick = () => {
+    if (!currentInput.includes('.') || /[+\-*/][^.]*$/.test(currentInput)) {
+        currentInput += '.'
+        display.innerText = currentInput
+    }
 }
 
-//Удаление
-
-const delC = document.getElementById('del_c');
-delC.onclick = function() {
-    let dellette = []
-    windowNumbers.innerText = 0
-    arrAllSumbols = dellette
+// Равно
+document.getElementById('calculated').onclick = () => {
+    try {
+        if (currentInput.includes('/0')) {
+            display.innerText = 'Нельзя'
+            currentInput = '0'
+            isResultShown = true
+            return
+        }
+        
+        let result = eval(currentInput)
+        result = parseFloat(result.toFixed(10))
+        display.innerText = result
+        currentInput = String(result)
+        isResultShown = true
+    } catch {
+        display.innerText = 'Ошибка'
+        currentInput = '0'
+        isResultShown = true
+    }
 }
 
-
- //Равно
-
-const calculated = document.getElementById('calculated');
-calculated.onclick = function(a, c, b) {
-    let d = arrAllSumbols.join('').split((/(\+|\-|\*|\/)/))
-    a = d[0]
-    b = d[2]
-    c = d[1]
-    
-    let result = ''
-    if(c === '+') {
-        result = Number(a) + Number(b)
-    }
-    if(c === '-') {
-        result = Number(a) - Number(b)
-    }
-    if(c === '*') {
-        result = Number(a) * Number(b)
-    }
-    if(c === '/') {
-        result = Number(a) / Number(b)
-    }
-    if(c === undefined) {
-        return
-    }
-      
-    if(d.length > 3) {
-        a = d[1] + d[2]
-        c = d[3]
-        b = d[4]
-        if(c === '+') {
-            result = Number(a) + Number(b)
-        }
-        if(c === '-') {
-            result = Number(a) - Number(b)
-        }
-        if(c === '*') {
-            result = Number(a) * Number(b)
-        }
-        if(c === '/') {
-            result = Number(a) / Number(b)
-        }
-    
-    }
-   
-    
-    windowNumbers.innerText = Number(result)
-    
-    arrAllSumbols = [Number(result)]
-
-    
-    
-   
-
-    
-
-    console.log(d)
-    
+// Очистка
+document.getElementById('del_c').onclick = () => {
+    currentInput = '0'
+    display.innerText = currentInput
+    isResultShown = false
 }
-
-
-
-
-
-
-
-//Цифры операнды
-
-const zero = document.getElementById('zero');
-const one = document.getElementById('one');
-const two = document.getElementById('two');
-const three = document.getElementById('three');
-const four = document.getElementById('four');
-const five = document.getElementById('five');
-const six = document.getElementById('six');
-const seven = document.getElementById('seven');
-const eight = document.getElementById('eight');
-const nine = document.getElementById('nine');
-
-//Операторы
-
-// Деление
-const division = document.getElementById('division');
-
-
-
-//Умножение
-const multiplication = document.getElementById('multiplication');
-
-
-//Вычитание
-const subtraction = document.getElementById('subtraction');
-
-
-//Сложение
-let addition = document.getElementById('addition');
-
-
-
-

@@ -277,36 +277,36 @@ body {
 }
 
 @media (max-width: 480px) {
-    .conteiner {
-        padding: 10px;
-    }
-    
-    .wrapper {
-        padding: 20px;
-        border-radius: 20px;
-    }
-    
-    .window {
-        min-height: 50px;
-        padding: 16px;
-        margin-bottom: 20px;
-        border-radius: 14px;
-    }
-    
-    .window_numbers {
-        font-size: clamp(28px, 7vw, 40px);
-    }
-    
-    .button_styles {
-        min-height: 52px;
-        margin: 5px 0;
-        padding: 15px 0;
-        font-size: 22px;
-        border-radius: 12px;
-    }
-    
-    .simbols_puddings {
-        gap: 6px;
-        padding: 4px 0;
-    }
+  .conteiner {
+    padding: 10px;
+  }
+  
+  .wrapper {
+    padding: 20px;
+    border-radius: 20px;
+  }
+  
+  .window {
+    min-height: 50px;
+    padding: 16px;
+    margin-bottom: 20px;
+    border-radius: 14px;
+  }
+  
+  .window_numbers {
+    font-size: clamp(28px, 7vw, 40px);
+  }
+  
+  .button_styles {
+    min-height: 52px;
+    margin: 5px 0;
+    padding: 15px 0;
+    font-size: 22px;
+    border-radius: 12px;
+  }
+  
+  .simbols_puddings {
+    gap: 6px;
+    padding: 4px 0;
+  }
 }
